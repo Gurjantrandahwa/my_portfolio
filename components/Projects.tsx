@@ -1,8 +1,14 @@
 import React from "react";
 import {motion} from "framer-motion";
+import {Project, Technology} from "../typing";
+import {urlFor} from "../sanity";
 
-export default function Projects() {
-    const projects = [1, 2, 3, 4, 5]
+type Props = {
+    projects: Project[]
+
+}
+export default function Projects({projects}: Props) {
+
     return <motion.div
         initial={{opacity: 0}}
         whileInView={{opacity: 1}}
@@ -13,33 +19,31 @@ export default function Projects() {
         </h3>
         <div className={"relative w-full flex overflow-x-scroll overflow-y-hidden snap-x snap-mandatory z-20" +
             " scrollbar-thin scrollbar-track-gray-400/20 scrollbar-thumb-[#F7AB0A]/80"}>
-            {projects.map((project, index) => (
+            {projects?.map((project, index) => (
                 <div key={index}
-                     className={"w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-20 md:pt-44 h-screen"}>
+                     className={"w-screen flex-shrink-0 snap-center flex flex-col space-y-5 items-center justify-center p-10 md:pt-44 h-screen"}>
                     <motion.img
-                        initial={{y:-300,opacity:0}}
+                        initial={{y: -300, opacity: 0}}
                         transition={{duration: 1.2}}
                         whileInView={{opacity: 1, y: 0}}
                         viewport={{once: true}}
                         className={"w-1/2 mt-20 md:w-1/3"}
-                        src={"https://ngs-space1.sgp1.digitaloceanspaces.com/am/uploads" +
-                            "/mediaGallery/image/1626272988083.jpg-org"}
+                        src={urlFor(project?.image).url()}
                         alt={""}/>
                     <div className={"space-x-10 px-0 md:px-10 max-w-6xl"}>
                         <h4 className={"text-3xl font-semibold text-center"}>
                             <span className={"underline decoration-[#F7AB0A]"}>
                             Case Study {index + 1} of {projects.length}
                         </span>
-                            {" "}: Netflix Clone
+                            {" "}: {project?.title}
                         </h4>
 
-                        <p className={"text-base text-center md:text-left mt-3"}>
-                            A app which is build with the firebase and React.In this
-                            signIn and signUp method with good looking UI
-                            A app which is build with the firebase and React.
-                            In this signIn and signUp method with good looking UI
-                        </p>
                     </div>
+
+                    <p className={"text-base text-center md:text-left mt-3 mb-20 "}>
+                        {project?.summary}
+                    </p>
+
                 </div>
             ))}
         </div>
