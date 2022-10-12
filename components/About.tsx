@@ -1,7 +1,11 @@
 import React from "react";
 import {motion} from "framer-motion";
-
-export default function About() {
+import {PageInfo} from "../typing";
+import {urlFor} from "../sanity";
+type Props = {
+    pageInfo:PageInfo
+}
+export default function About({pageInfo}:Props) {
     return <motion.div
         initial={{opacity: 0}}
         transition={{duration: 1.5}}
@@ -21,18 +25,15 @@ export default function About() {
             }}
             whileInView={{x: 0, opacity: 1}}
             viewport={{once: true}}
-            src={"https://avatars.githubusercontent.com/u/101963722?s=400&u=84736adea5f02f15f612277e6c66fd008af05413&v=4"}
-            className={"-mb-20 md:mb-0 flex-shrink-0 w-50 h-48 rounded-full object-cover md:rounded-lg md:h-95 md:w-64 xl:w-[300px] xl:h-[350px]"}
+            src={urlFor(pageInfo?.heroImage).url()}
+            className={"-mb-20 md:mb-0 flex-shrink-0 w-44 h-44 rounded-full object-cover md:rounded-lg md:h-95 md:w-64 xl:w-[300px] xl:h-[350px]"}
         />
         <div className={"space-y-10 px-0 md:px-10"}>
             <h4 className={"text-3xl font-semibold pt-20"}>
                 Here is a{" "}<span className={"underline decoration-[#F7AB0A]"}>little</span> background
             </h4>
             <p className={"text-base"}>
-                Hello! I'm Gurjant Singh, a Front-End Web Developer. I am very passionate about coding so, I started a new journey to build creative design to make eye-catching,
-                accessible, user-friendly websites and applications.
-                Well-organised person,interested in the entire frontend spectrum and working on ambitious projects
-                with positive people.I spend my time on personal projects for learning new skills
+                {pageInfo?.backgroundInformation}
             </p>
         </div>
     </motion.div>
