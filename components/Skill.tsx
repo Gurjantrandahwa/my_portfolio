@@ -4,11 +4,11 @@ import {Skill as SkillType} from "../typing";
 import {urlFor} from "../sanity";
 
 type Props = {
-    skill:SkillType;
+    skill: SkillType;
     directionLeft?: boolean
 }
 
-export default function Skill({skill,directionLeft}: Props) {
+export default function Skill({skill, directionLeft}: Props) {
     return <div className={"group relative flex cursor-pointer"}>
         <motion.img
             initial={{
@@ -17,7 +17,7 @@ export default function Skill({skill,directionLeft}: Props) {
             }}
             transition={{duration: 1}}
             whileInView={{opacity: 1, x: 0}}
-          src={urlFor(skill?.image).url()}
+            src={urlFor(skill?.image).url()}
             alt={"s"}
             className={"rounded-full border border-gray-500 object-cover w-16 h-16 md:w-20 md:h-20 xl:w-24 xl:h-24 filter group-hover:grayscale transition duration-300 ease-in-out "}
         />
